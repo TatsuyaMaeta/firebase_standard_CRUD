@@ -1,11 +1,24 @@
-.pink {
-    color: pink;
+#input_data dl {
+    display: flex;
 }
 
-.yellow{
-    color: yellow;
+#input_data dt {
+    width: 35%;
+    padding: 8px;
+    background-color: #DADADA;
+    margin: 0 0 10px 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#blue{
-    color: blue;
+#input_data dd {
+    width: 65%;
+    padding: 8px;
+    background-color: #F3F3F3;
+    margin: 0 0 10px 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }

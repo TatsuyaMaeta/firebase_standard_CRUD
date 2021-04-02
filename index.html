@@ -9,11 +9,28 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        name <input type="text" name="name" id="namebox" /><br /><br />
-        Roll <input type="text" name="roll" id="rollbox" /><br /><br />
-        section <input type="text" name="section" id="sectionbox" />
-        <br /><br />
-        gender<input type="text" name="gender" id="genderbox" /><br /><br />
+        <div id="input_data">
+            <dl>
+                <dt>指名</dt>
+                <dd><input type="text" name="name" id="namebox" /></dd>
+            </dl>
+            <dl>
+                <dt>学部</dt>
+                <dd><input type="text" name="section" id="sectionbox" /></dd>
+            </dl>
+            <dl>
+                <dt>学生番号</dt>
+                <dd><input type="text" name="roll" id="rollbox" /></dd>
+            </dl>
+            <dl>
+                <dt>性別</dt>
+                <dd><input type="text" name="gender" id="genderbox" /></dd>
+            </dl>
+        </div>
+        <!-- <br /><br />
+        学生番号 <input type="text" name="roll" id="rollbox" /><br /><br />
+        学部 <input type="text" name="section" id="sectionbox" /> <br /><br />
+        性別<input type="text" name="gender" id="genderbox" /><br /><br /> -->
 
         <button id="insert">データ追加</button>
         <button id="select">選択</button>
@@ -41,8 +58,8 @@
 
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <!-- <script src="js/app.js" id="main-script"></script> -->
-        <script>
+        <script src="js/app.js"></script>
+        <!-- <script>
             let nameV, rollV, secV, genV;
 
             // var f_data = firebase.database();
@@ -117,6 +134,6 @@
                     .ref("student/" + rollV)
                     .remove();
             };
-        </script>
+        </script> -->
     </body>
 </html>
