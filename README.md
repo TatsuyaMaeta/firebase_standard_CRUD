@@ -1,0 +1,2 @@
+# firebase_standard_CRUD
+firebaseを使用したCRUD処理の基礎部分です
