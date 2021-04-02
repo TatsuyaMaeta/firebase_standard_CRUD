@@ -1,0 +1,15 @@
+.
+├── env
+│   ├── env_firebase_CRUD
+│   │   └── env.js
+│
+└── firebase_standard_CRUD
+    ├── README.md
+    ├── css
+    │   ├── reset.css
+    │   └── style.css
+    ├── images
+    ├── index.html
+    └── js
+        └── app.js
+
