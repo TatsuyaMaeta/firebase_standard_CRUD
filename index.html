@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        name <input type="text" name="name" id="namebox" /><br /><br />
+        Roll <input type="text" name="roll" id="rollbox" /><br /><br />
+        section <input type="text" name="section" id="sectionbox" />
+        <br /><br />
+        gender<input type="text" name="gender" id="genderbox" /><br /><br />
+
+        <button id="insert">データ追加</button>
+        <button id="select">選択</button>
+        <button id="update">更新</button>
+        <button id="delete">削除</button>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+        <!-- 下記2行追記 -->
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+
+        <!-- firebaseの設定を読み込み -->
+        <script src="../env/env_firebase_CRUD/env.js"></script>
+
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = envFirebaseConfig; //envFirebaseConfigは別ディレクトリにあるFirebase用のIDなどの情報の変数
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            // console.log(firebaseConfig);
+        </script>
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- <script src="js/app.js" id="main-script"></script> -->
+        <script>
+            let nameV, rollV, secV, genV;
+
+            // var f_data = firebase.database();
+
+            //---------------------------- データ準備 ----------------------------
+
+            function Ready() {
+                nameV = document.getElementById("namebox").value;
+                rollV = document.getElementById("rollbox").value;
+                secV = document.getElementById("sectionbox").value;
+                genV = document.getElementById("genderbox").value;
+            }
+
+            //---------------------------- 挿入処理 ----------------------------
+
+            document.getElementById("insert").onclick = function () {
+                Ready();
+                console.dir(firebase.database());
+                firebase
+                    .database()
+                    .ref("student/" + rollV)
+                    .set({
+                        NameOfStudent: nameV,
+                        RollNo: rollV,
+                        Section: secV,
+                        Gender: genV,
+                    });
+            };
+
+            //---------------------------- 項目選択 ----------------------------
+            document.getElementById("select").onclick = function () {
+                Ready();
+
+                firebase
+                    .database()
+                    .ref("student/" + rollV)
+                    .on("value", function (snapshot) {
+                        document.getElementById(
+                            "namebox"
+                        ).value = snapshot.val().NameOfStudent;
+                        document.getElementById(
+                            "sectionbox"
+                        ).value = snapshot.val().Section;
+                        document.getElementById(
+                            "genderbox"
+                        ).value = snapshot.val().Gender;
+                    });
+            };
+
+            //---------------------------- 更新処理 ----------------------------
+
+            document.getElementById("update").onclick = function () {
+                Ready();
+                console.dir(firebase.database());
+                firebase
+                    .database()
+                    .ref("student/" + rollV)
+                    .update({
+                        NameOfStudent: nameV,
+                        Section: secV,
+                        Gender: genV,
+                    });
+            };
+
+            //---------------------------- 削除処理 ----------------------------
+
+            document.getElementById("delete").onclick = function () {
+                Ready();
+                console.dir(firebase.database());
+                firebase
+                    .database()
+                    .ref("student/" + rollV)
+                    .remove();
+            };
+        </script>
+    </body>
+</html>
