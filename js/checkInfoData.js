@@ -1,4 +1,4 @@
-let nameArr = ["namebox", "rollbox", "sectionbox", "genderbox"];
+const nameArr = ["namebox", "rollbox", "sectionbox", "genderbox"];
 
 function checkData() {
     let resultBool = false;

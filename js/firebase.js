@@ -1,3 +1,6 @@
+// 参照サイト
+// https://www.youtube.com/watch?v=oxqVnWPg0So
+
 let nameV, rollV, secV, genV;
 let isInsert = false;
 //---------------------------- データ準備 ----------------------------
