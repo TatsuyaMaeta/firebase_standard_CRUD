@@ -3,6 +3,8 @@
 
 let nameV, rollV, secV, genV;
 let isInsert = false;
+const btnArr = ["insert", "select", "update", "delete"];
+
 //---------------------------- データ準備 ----------------------------
 
 function Ready() {
@@ -18,7 +20,7 @@ document.getElementById("insert").onclick = function () {
     Ready();
 
     //空白蘭が1つでもあるとtrueが戻り値に来る
-    isInsert = checkData();
+    isInsert = checkData(btnArr[0]);
     console.log(isInsert);
     if (!isInsert) {
         console.dir(firebase.database());
@@ -49,18 +51,33 @@ if (isInsert) {
 document.getElementById("select").onclick = function () {
     Ready();
 
-    firebase
-        .database()
-        .ref("student/" + rollV)
-        .on("value", function (snapshot) {
-            document.getElementById(
-                "namebox"
-            ).value = snapshot.val().NameOfStudent;
-            document.getElementById(
-                "sectionbox"
-            ).value = snapshot.val().Section;
-            document.getElementById("genderbox").value = snapshot.val().Gender;
-        });
+    isInsert = checkData(btnArr[1]); //btnArr[1] = select;
+    console.log(isInsert);
+    if (!isInsert) {
+        firebase
+            .database()
+            .ref("student/" + rollV)
+            .on("value", function (snapshot) {
+                // console.log("snapshot ", snapshot);
+                console.log("snapshot ", snapshot.val());
+
+                document.getElementById(
+                    "namebox"
+                ).value = snapshot.val().NameOfStudent;
+                document.getElementById(
+                    "sectionbox"
+                ).value = snapshot.val().Section;
+                document.getElementById(
+                    "genderbox"
+                ).value = snapshot.val().Gender;
+                
+            });
+        isInsert = false;
+    } else {
+        setEmptyInputTag();
+        console.log("Please enter Student Number.");
+        isInsert = false;
+    }
 };
 
 //---------------------------- 更新処理 ----------------------------
